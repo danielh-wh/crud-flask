@@ -1,0 +1,49 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Lista de libros</h3>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-2">
+            <a href="{{ url_for('add') }}" class="btn btn-info form-control">Agregar</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Fecha de Publicación</th>
+                    <th scope="col">Editorial</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.description }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.release_date }}</td>
+                    <td>{{ book.editorial }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', id=book.id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                        <a href="{{ url_for('delete', id=book.id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
